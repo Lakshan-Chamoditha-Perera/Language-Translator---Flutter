@@ -5,12 +5,13 @@ class LanguageTranslationPage extends StatefulWidget {
   const LanguageTranslationPage({Key? key}) : super(key: key);
 
   @override
+  // ignore: library_private_types_in_public_api
   _LanguageTranslationPageState createState() =>
       _LanguageTranslationPageState();
 }
 
 class _LanguageTranslationPageState extends State<LanguageTranslationPage> {
-  var languages = ['Hindi', 'English', 'Gujarati', 'Marathi', 'Tamil'];
+  var languages = ['Sinhala', 'English', 'Gujarati', 'Marathi', 'Tamil'];
   var originLanguage = '--';
   var destinationLanguage = '--';
   var output = '';
@@ -33,8 +34,8 @@ class _LanguageTranslationPageState extends State<LanguageTranslationPage> {
 
   String getLanguageCode(String language) {
     switch (language) {
-      case 'Hindi':
-        return 'hi';
+      case 'Sinhala':
+        return 'si';
       case 'English':
         return 'en';
       case 'Gujarati':
@@ -95,21 +96,21 @@ class _LanguageTranslationPageState extends State<LanguageTranslationPage> {
                   SizedBox(width: 40),
                   Icon(Icons.arrow_right_alt_outlined,
                       color: Colors.white, size: 40),
-                  SizedBox(width: 40),
+                  const SizedBox(width: 40),
                   DropdownButton(
                     focusColor: Colors.white,
-                    iconDisabledColor: Colors.white,
+                    iconDisabledColor: Colors.blue[700],
                     iconEnabledColor: Colors.white,
                     hint: Text(
                       destinationLanguage,
-                      style: TextStyle(color: Colors.white),
+                      style: TextStyle(color: Colors.blue[700]),
                     ),
                     dropdownColor: Colors.white,
                     icon: Icon(Icons.keyboard_arrow_down),
                     items: languages.map((String dropDownStringItem) {
                       return DropdownMenuItem(
-                        child: Text(dropDownStringItem),
                         value: dropDownStringItem,
+                        child: Text(dropDownStringItem),
                       );
                     }).toList(),
                     onChanged: (String? value) {
@@ -120,7 +121,7 @@ class _LanguageTranslationPageState extends State<LanguageTranslationPage> {
                   ),
                 ],
               ),
-              SizedBox(
+              const SizedBox(
                 height: 40,
               ),
               Padding(
@@ -130,7 +131,7 @@ class _LanguageTranslationPageState extends State<LanguageTranslationPage> {
                   autofocus: false,
                   style: TextStyle(color: Colors.black),
                   decoration: InputDecoration(
-                    labelText: 'Enter Text',
+                    labelText: 'Enter your text here',
                     labelStyle: TextStyle(color: Colors.black, fontSize: 15),
                     border: OutlineInputBorder(
                       borderSide: BorderSide(
@@ -158,14 +159,14 @@ class _LanguageTranslationPageState extends State<LanguageTranslationPage> {
               Padding(
                 padding: const EdgeInsets.all(8),
                 child: ElevatedButton(
-                  style: ElevatedButton.styleFrom(primary: Color(0xff10223d)),
+                  style: ElevatedButton.styleFrom(primary: Colors.white),
                   onPressed: () {
                     translate(
                         getLanguageCode(originLanguage),
                         getLanguageCode(destinationLanguage),
                         languageController.text.toString());
                   },
-                  child: Text("Translate"),
+                  child: Text("Click to translate"),
                 ),
               ),
               SizedBox(
@@ -174,8 +175,8 @@ class _LanguageTranslationPageState extends State<LanguageTranslationPage> {
               Text(
                 output,
                 style: TextStyle(
-                    color: Colors.black,
-                    fontSize: 20,
+                    color: Color(0xff10223d),
+                    fontSize: 40,
                     fontWeight: FontWeight.bold),
               )
             ],
